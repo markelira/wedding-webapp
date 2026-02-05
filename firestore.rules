@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // RSVPs collection - anyone can create, only admins can read
+    match /rsvps/{rsvpId} {
+      // Allow anyone to create a new RSVP
+      allow create: if true;
+
+      // Only authenticated admins can read, update, delete
+      allow read, update, delete: if request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Admins collection - only readable by authenticated users
+    match /admins/{adminId} {
+      allow read: if request.auth != null && request.auth.uid == adminId;
+      // No create/update/delete via client - manage via Firebase Console
+    }
+
+    // Settings collection - read-only for everyone, write only for admins
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+  }
+}

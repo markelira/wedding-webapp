@@ -1,26 +1,275 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Regency Era Color Palette - Bridgerton inspired */
+  /* Soft pastels that were status symbols of the era */
+  --color-cream: #FBF9F7;              /* Aged paper */
+  --color-ivory: #F8F5F0;              /* Silk white */
+  --color-blush: #F2E1DC;              /* Regency pink */
+  --color-powder: #E8EEF2;             /* Powder blue */
+  --color-sage: #D5DED6;               /* Soft sage green */
+  --color-lavender: #E8E4EE;           /* Gentle lavender */
+  --color-champagne: #F0E6D8;          /* Warm champagne */
+
+  /* Metallic accents */
+  --color-gold: #C4A35A;               /* Antique gold */
+  --color-gold-light: #D9C896;         /* Gilded highlight */
+  --color-gold-dark: #96783C;          /* Burnished gold */
+
+  /* Text hierarchy - period appropriate */
+  --color-ink: #2D3436;                /* Rich ink black */
+  --color-ink-soft: #4A5568;           /* Faded ink */
+  --color-ink-muted: #718096;          /* Aged ink */
+
+  /* Accent colors - Regency jewel tones */
+  --color-wine: #722F37;               /* Burgundy/claret */
+  --color-wine-dark: #4A1F24;
+  --color-emerald: #2D5A4A;            /* Deep emerald */
+  --color-sapphire: #2C4A6E;           /* Sapphire blue */
+
+  /* Legacy mappings */
+  --color-deep-blue: #2D3436;
+  --color-burgundy: #722F37;
+  --color-parchment: #F8F5F0;
+
+  /* Font families */
+  --font-display: var(--font-cinzel), serif;
+  --font-body: var(--font-cormorant), serif;
+  --font-script: var(--font-pinyon), cursive;
+
+  /* Typography scale - elegant proportions */
+  --text-hero: clamp(3.5rem, 10vw, 6rem);
+  --text-section: clamp(1.75rem, 5vw, 2.5rem);
+  --text-body: clamp(1.125rem, 2.5vw, 1.375rem);
+  --text-small: 1rem;
+
+  /* Line heights */
+  --leading-tight: 1.2;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
+  /* Letter spacing */
+  --tracking-wide: 0.15em;
+  --tracking-normal: 0.02em;
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.8s ease-out;
+  --animate-slide-up: slideUp 0.6s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Keyframes */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased text-ink;
+    font-family: var(--font-body);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
+    background-color: var(--color-cream);
+    /* Vintage paper texture - aged parchment effect */
+    background-image:
+      /* Paper grain/noise texture */
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"),
+      /* Aged paper stains and variations */
+      radial-gradient(ellipse at 15% 10%, rgba(196, 163, 90, 0.08) 0%, transparent 40%),
+      radial-gradient(ellipse at 85% 20%, rgba(180, 150, 100, 0.06) 0%, transparent 35%),
+      radial-gradient(ellipse at 70% 80%, rgba(196, 163, 90, 0.07) 0%, transparent 45%),
+      radial-gradient(ellipse at 25% 75%, rgba(160, 140, 90, 0.05) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 50%, rgba(200, 180, 140, 0.04) 0%, transparent 60%),
+      /* Edge darkening - vignette */
+      radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(120, 100, 70, 0.06) 100%),
+      /* Base color gradient */
+      linear-gradient(180deg, #FAF7F2 0%, #F5F0E8 50%, #EFE8DC 100%);
+    background-attachment: fixed;
+    background-size: 200px 200px, cover, cover, cover, cover, cover, cover, cover;
+    background-blend-mode: overlay, normal, normal, normal, normal, normal, normal, normal;
+  }
+
+  /* Paper texture overlay for the entire page */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      /* Subtle fiber texture */
+      url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000' fill-opacity='0.02'%3E%3Cpath d='M10 10 Q 15 8 20 10 T 30 10' stroke='%23927B4F' stroke-opacity='0.03' fill='none'/%3E%3Cpath d='M60 30 Q 65 28 70 30 T 80 30' stroke='%23927B4F' stroke-opacity='0.02' fill='none'/%3E%3Cpath d='M20 70 Q 25 68 30 70 T 40 70' stroke='%23927B4F' stroke-opacity='0.03' fill='none'/%3E%3Cpath d='M70 80 Q 75 78 80 80 T 90 80' stroke='%23927B4F' stroke-opacity='0.02' fill='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    opacity: 0.6;
+    z-index: 9999;
+  }
+
+  ::selection {
+    background-color: rgba(196, 163, 90, 0.3);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Typography utilities */
+  .text-hero {
+    font-size: var(--text-hero);
+    line-height: var(--leading-tight);
+  }
+
+  .text-section {
+    font-size: var(--text-section);
+    line-height: var(--leading-tight);
+  }
+
+  .tracking-elegant {
+    letter-spacing: var(--tracking-wide);
+  }
+
+  /* Drop cap for elegant first letters */
+  .drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-size: 4em;
+    line-height: 0.8;
+    padding-right: 0.15em;
+    padding-top: 0.05em;
+    color: var(--color-gold);
+    font-weight: 600;
+  }
+
+  /* Regency era damask pattern background */
+  .bg-damask {
+    background-color: var(--color-cream);
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C4A35A' fill-opacity='0.03'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20v20h20zm0 0c0 11.046 8.954 20 20 20V30H30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Floral pattern overlay */
+  .bg-floral {
+    background-color: var(--color-cream);
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C4A35A' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3Ccircle cx='40' cy='20' r='2'/%3E%3Ccircle cx='40' cy='60' r='2'/%3E%3Ccircle cx='20' cy='40' r='2'/%3E%3Ccircle cx='60' cy='40' r='2'/%3E%3Ccircle cx='28' cy='28' r='1.5'/%3E%3Ccircle cx='52' cy='28' r='1.5'/%3E%3Ccircle cx='28' cy='52' r='1.5'/%3E%3Ccircle cx='52' cy='52' r='1.5'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Watercolor wash effect */
+  .bg-watercolor {
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(242, 225, 220, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(232, 238, 242, 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(213, 222, 214, 0.3) 0%, transparent 60%),
+      var(--color-cream);
+  }
+
+  /* Elegant gold shimmer effect */
+  .shimmer-gold {
+    background: linear-gradient(
+      90deg,
+      var(--color-gold-dark) 0%,
+      var(--color-gold-light) 50%,
+      var(--color-gold-dark) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Ornate border frame */
+  .frame-ornate {
+    border: 1px solid var(--color-gold);
+    position: relative;
+  }
+
+  .frame-ornate::before,
+  .frame-ornate::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--color-gold);
+  }
+
+  .frame-ornate::before {
+    top: 4px;
+    left: 4px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .frame-ornate::after {
+    bottom: 4px;
+    right: 4px;
+    border-left: none;
+    border-top: none;
+  }
+}
+
+/* Custom scrollbar - period appropriate */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-ivory);
+    border-left: 1px solid var(--color-gold-light);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
