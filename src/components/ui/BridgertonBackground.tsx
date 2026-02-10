@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { WisteriaHeader } from './WisteriaHeader'
 
 // Floating golden dust particles
 function FloatingParticles({ count = 15 }: { count?: number }) {
@@ -275,6 +276,9 @@ export function BridgertonBackground({ children }: { children: React.ReactNode }
           `,
         }}
       />
+
+      {/* Wisteria hanging from top */}
+      <WisteriaHeader />
 
       {/* Wisteria vines on sides - desktop only */}
       <WisteriaVine side="left" />

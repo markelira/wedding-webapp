@@ -97,6 +97,18 @@ export function Footer() {
             </p>
           </div>
 
+          {/* Whistledown farewell */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mt-8 text-base sm:text-lg italic text-ivory/50 leading-relaxed max-w-md mx-auto"
+            style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300 }}
+          >
+            Ezzel Lady Whistledown búcsút vesz. Maradok, a Társaság hű szolgálója.
+          </motion.p>
+
           {/* Date */}
           <div className="mt-10">
             <p

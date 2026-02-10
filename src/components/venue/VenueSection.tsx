@@ -5,6 +5,7 @@ import { MapPin, ExternalLink } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { VENUE } from '@/lib/constants'
+import { VenueCarousel } from './VenueCarousel'
 
 // Regency style section header with flourishes
 function SectionHeader({ children }: { children: React.ReactNode }) {
@@ -49,32 +50,33 @@ export function VenueSection() {
       <Container>
         <SectionHeader>Helyszín</SectionHeader>
 
+        {/* Whistledown description */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mx-auto max-w-2xl text-center text-lg sm:text-xl leading-relaxed text-ink-soft mb-12"
+          style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300 }}
+        >
+          E szerző értesülése szerint az ifjú pár nem kevesebbre esett választása,
+          mint a biri-i Le Til Kúria — e páratlan birtok, melynek oszlopos homlokzata
+          és gondozott kertjei még a legkényesebb vendég tetszését is kivívják.
+        </motion.p>
+
         <div className="relative grid gap-8 md:grid-cols-2">
-          {/* Venue Image */}
+          {/* Venue Image Carousel */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="group relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg"
+            className="group relative shadow-lg"
             style={{
               boxShadow: '0 4px 20px rgba(44, 36, 22, 0.1), 0 8px 40px rgba(44, 36, 22, 0.08)',
             }}
           >
-            {/* Ornate frame border */}
-            <div className="absolute inset-0 border border-gold/30 m-2 pointer-events-none z-10" />
-            <div className="absolute inset-0 border border-gold/20 m-4 pointer-events-none z-10" />
-
-            {/* Placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blush/50 to-powder/50" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-ink-muted italic" style={{ fontFamily: 'var(--font-cormorant)' }}>
-                [Venue Photo]
-              </p>
-            </div>
-
-            {/* Hover overlay */}
-            <div className="absolute inset-0 bg-gold/0 transition-colors duration-500 group-hover:bg-gold/5" />
+            <VenueCarousel />
           </motion.div>
 
           {/* Venue Details */}

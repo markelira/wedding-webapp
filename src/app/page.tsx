@@ -11,6 +11,7 @@ import { ProgramTimeline } from '@/components/program/ProgramTimeline'
 import { InfoSection } from '@/components/info/InfoSection'
 import { RSVPForm } from '@/components/rsvp/RSVPForm'
 import { Footer } from '@/components/footer/Footer'
+import { MusicPlayer } from '@/components/ui/MusicPlayer'
 
 export default function HomePage() {
   const [showContent, setShowContent] = useState(false)
@@ -18,6 +19,8 @@ export default function HomePage() {
   return (
     <>
       <EnvelopeAnimation onComplete={() => setShowContent(true)} />
+
+      <MusicPlayer shouldPlay={showContent} />
 
       {showContent && (
         <motion.div

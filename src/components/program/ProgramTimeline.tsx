@@ -63,6 +63,20 @@ export function ProgramTimeline() {
       <Container>
         <SectionHeader>Program</SectionHeader>
 
+        {/* Whistledown intro */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mx-auto max-w-2xl text-center text-lg sm:text-xl leading-relaxed text-ink-soft mb-12"
+          style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300 }}
+        >
+          Lady Whistledown ezúttal kizárólag egyetlen szenzációra irányítja figyelmét:
+          az évad legragyogóbb estjének menetrendjére, melyet az alábbiakban közöl
+          Becses Olvasójával.
+        </motion.p>
+
         <div className="relative mx-auto max-w-lg">
           {/* Elegant timeline line with decorative elements */}
           <div className="absolute left-[88px] top-0 h-full w-px sm:left-[108px]">

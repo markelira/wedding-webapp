@@ -15,7 +15,7 @@ function QuoteMark({ position }: { position: 'open' | 'close' }) {
       }`}
       style={{ fontFamily: 'Georgia, serif' }}
     >
-      {position === 'open' ? '"' : '"'}
+      {position === 'open' ? '\u201C' : '\u201D'}
     </span>
   )
 }
@@ -71,11 +71,13 @@ export function InfoSection() {
               <div className="relative mt-8 px-4">
                 <QuoteMark position="open" />
                 <p
-                  className="text-2xl sm:text-3xl italic leading-relaxed text-ink-soft"
+                  className="text-xl sm:text-2xl leading-relaxed text-ink-soft"
                   style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300 }}
                 >
-                  A fiatal pár mindennel bír, mi egy háztartáshoz illik,
-                  ami még hiányzik, az elegánsan elfér egy boríték mélyén.
+                  Ami az ajándékot illeti — nos, a fiatal pár már mindennel bír,
+                  mi egy háztartáshoz illik. Ami még hiányzik, az elegánsan elfér
+                  egy boríték mélyén. Lady Whistledown természetesen sosem beszélne
+                  pénzről... de a borítékról igen.
                 </p>
                 <QuoteMark position="close" />
               </div>
@@ -102,10 +104,12 @@ export function InfoSection() {
                     Szállás
                   </h3>
                   <p
-                    className="mt-2 text-lg sm:text-xl text-ink-soft"
-                    style={{ fontFamily: 'var(--font-cormorant)' }}
+                    className="mt-2 text-lg sm:text-xl leading-relaxed text-ink-soft"
+                    style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300 }}
                   >
-                    A helyszínen lehetőség van szállásra.
+                    Lady Whistledown figyelmezteti becses olvasóit: aki a mulatozás után
+                    nem kívánna hintóra szállni, annak a Kúria kényelmesen berendezett
+                    szobái állnak rendelkezésre.
                   </p>
                   <div className="mt-4 inline-flex items-baseline gap-2 border-b border-gold/30 pb-1">
                     <span
@@ -150,11 +154,12 @@ export function InfoSection() {
                   </h3>
                   <p
                     className="mt-2 text-lg sm:text-xl leading-relaxed text-ink-soft"
-                    style={{ fontFamily: 'var(--font-cormorant)' }}
+                    style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300 }}
                   >
-                    Másnap 18 óráig lehet a helyszínen maradni. Lehetőség van
-                    wellnessezésre, és egy közös pizza partit szervezünk délután
-                    azokkal, akik ott maradnak!
+                    S mint minden igazán emlékezetes báli szezon, ez sem ér véget egyetlen
+                    éjszaka után! Másnap, a fellángolós fejek összeterítésekor, közös pizzázás
+                    várja azokat, kik kitartanak a végéig. Másnap 18 óráig lehet a helyszínen
+                    maradni, lehetőség van wellnessezésre is.
                   </p>
                 </div>
               </div>

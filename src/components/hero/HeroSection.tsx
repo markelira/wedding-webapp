@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { CountdownTimer } from '@/components/countdown/CountdownTimer'
-import { WeddingEmblem } from './WeddingEmblem'
+import { CoupleSilhouette } from './CoupleSilhouette'
 
 // Decorative flourish divider
 function FloralDivider() {
@@ -80,14 +80,14 @@ export function HeroSection() {
           2026. május 7.
         </motion.p>
 
-        {/* Wedding Emblem - Floral wreath with V&M monogram */}
+        {/* Couple Silhouette - Cameo style with rings */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1.4, duration: 0.8 }}
           className="mt-6 flex justify-center"
         >
-          <WeddingEmblem />
+          <CoupleSilhouette />
         </motion.div>
 
         {/* Countdown */}
